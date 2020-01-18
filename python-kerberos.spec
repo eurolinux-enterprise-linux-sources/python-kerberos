@@ -2,7 +2,7 @@
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 Name:           python-kerberos
 Version:        1.1
-Release:        11%{?dist}
+Release:        13%{?dist}
 Summary:        A high-level wrapper for Kerberos (GSSAPI) operations
 
 Group:          System Environment/Libraries
@@ -55,6 +55,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.1-13
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.1-12
+- Mass rebuild 2013-12-27
+
 * Mon Jun 17 2013 Rob Crittenden <rcritten@redhat.com> - 1.1-11
 - Fix version in setup.py so egg information is correct (#975202)
 
