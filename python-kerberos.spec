@@ -2,7 +2,7 @@
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 Name:           python-kerberos
 Version:        1.1
-Release:        13%{?dist}
+Release:        15%{?dist}
 Summary:        A high-level wrapper for Kerberos (GSSAPI) operations
 
 Group:          System Environment/Libraries
@@ -20,6 +20,8 @@ BuildRequires:  python-setuptools
 
 Patch0: PyKerberos-delegation.patch
 Patch1: PyKerberos-version.patch
+Patch2: PyKerberos-gsswrap.patch
+Patch3: PyKerberos-inquire.patch
 
 %description
 This Python package is a high-level wrapper for Kerberos (GSSAPI) operations.
@@ -36,6 +38,8 @@ Much of the C-code here is adapted from Apache's mod_auth_kerb-5.0rc7.
 
 %patch0 -p1 -b .delegation
 %patch1 -p1 -b .version
+%patch2 -p1 -b .gsswrap
+%patch3 -p1 -b .inquire
 
 %build
 %{__python} setup.py build
@@ -55,6 +59,14 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Sep  8 2014 Rob Crittenden <rcritten@redhat.com> - 1.1-15
+- Add patch to allow inquiring the current client credentials
+  (#1053860)
+
+* Mon Sep  8 2014 Rob Crittenden <rcritten@redhat.com> - 1.1-14
+- Fix calculation of username string length in authenticate_gss_client_wrap
+  (#1112373)
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.1-13
 - Mass rebuild 2014-01-24
 
